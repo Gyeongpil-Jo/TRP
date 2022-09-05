@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+<!-- 'load' must be under 'extends'-->
+{% block content %}
+    <div class="container my-3">
+        <h2 class="border-bottom my-3 py-2">{{ name }} ,Welcome to TRP</h2><br>
+        <a href="{% url 'TRP:start_date' %}" class="btn btn-primary">Check</a>
+    </div>
+{% endblock %}
