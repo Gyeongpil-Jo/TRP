@@ -34,5 +34,20 @@ def start_date(request):
 @login_required(login_url='common:login')
 def calculate(request):
     inform = Inform.objects.get(name=request.user)
-    context = {'name': inform.name, 'start_date': inform.start_date}
+    context = {'inform': inform}
     return render(request, 'TRP/calculate.html', context)
+
+
+@login_required(login_url='common:login')
+def file_upload(request):
+    inform = Inform.objects.get(name=request.user)
+    if request.method == 'POST':
+        form = InformForm(request.POST, request.FILES, instance=inform)
+        if form.is_valid():
+            inform = form.save(commit=False)
+            inform.save()
+            return redirect('TRP:calculate')
+    else:
+        form = InformForm(instance=inform)
+    context = {'form': form}
+    return render(request, 'TRP/file_upload.html', context)

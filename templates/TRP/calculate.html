@@ -2,6 +2,10 @@
 <!-- 'load' must be under 'extends'-->
 {% block content %}
     <div class="container my-3">
-        <h2 class="border-bottom my-3 py-2">{{ name }} start date is {{ start_date }}</h2>
+        <h2 class="border-bottom my-3 py-2">{{ inform.name }} start date is {{ inform.start_date }}</h2>
     </div>
+    <div class="container my-3">
+        <h2 class="border-bottom my-3 py-2">{{ inform.files }}</h2>
+    </div>
+    <a href="{% url 'TRP:file_upload' %}" class="btn btn-primary">File</a>
 {% endblock %}
